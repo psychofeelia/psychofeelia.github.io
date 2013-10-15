@@ -85,6 +85,6 @@ $(document).mousemove(function(h){
 $("#myButton span").hide();
 $(".myButton").click(function(){
     $("#myButton span").fadeIn();
-    return false;
+    return true;
 });
 });
