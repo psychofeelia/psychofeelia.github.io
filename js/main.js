@@ -6,31 +6,39 @@ $(document).ready(function(){
         $(".main section:eq(" + $(this).index() + ")").fadeIn();
     });
     $("nav a:eq(0)").click();
-    if($(window).width()>=480){
-        $("nav").hover(function(){
-            $(".arrow").fadeOut();
-        },
-        function(){
-            $(".arrow").delay(300).fadeIn();
+    $(window).resize(function(){
+        if($(window).width()>=480){
+            $("nav").hover(function(){
+                $(".arrow").fadeOut();
+            },
+            function(){
+                $(".arrow").delay(300).fadeIn();
+            }
+            );
         }
-        );
-    }
+        else{
+            $('nav').hover(function(){});
+        }
     
+    })
+        
 
     var bouncetime = 1000;
-    var ballheight = 485;
+    var ballheight = 20;
     var ballsize = 80;
-    balltop =20;
+    balltop =480;
     var n=15;
     
  
     ballbounce();
     function ballbounce() {
-        $('#creatures').animate({'top':balltop}, bouncetime, 'easeOutQuad', function() {
+        blink();
+
+        $('#creatures').animate({'bottom':balltop}, bouncetime, 'easeOutQuad', function() {
             if(p<12)
             {$('figure').delay(900).animate({'height':70+p*1.1},90);
              }
-            $('#creatures').animate({'top':ballheight}, bouncetime, 'easeInQuad', function() {                           
+            $('#creatures').animate({'bottom':ballheight}, bouncetime, 'easeInQuad', function() {                           
                if(p<12)
                {$('figure').animate({'height':90},100);}
                      if(document.height>document.width)
@@ -47,28 +55,30 @@ $(document).ready(function(){
                                         p=i;
                                         // bouncetime=1000;
                                         $('figure').removeClass('nervous');
-                                        balltop=40*i;
+                                        balltop=480/Math.sqrt(i);
                                         $('.mouth').animate({'height':45-3*i})
                                         break;
                                     }
                                     if(i>=13) {
                                         p=i;
-                                        balltop=465;
+                                        balltop=30;
                                         // bouncetime=1;
                                         // $('figure').removeClass('nervous');
                                         $('.mouth').animate({'height':9+2*i})
                                         $('figure').addClass('nervous');
+                                        break;
                                     }
                                     
                                 }
                                 
                                     if(x2/a1+y2/(Math.pow(1,2)*b2)-1 <0)
-                                    {
-                                        balltop=40;
+                                    {   $('figure').removeClass('nervous'); 
+                                        balltop=480;
                                     }
                                     if(x2/a2+y2/(Math.pow(n,2)*b2)-1 >0)
-                                    {   
-                                        balltop= 465;
+                                    {   p=n;
+                                        balltop= 30;
+                                         // $('.mouth').animate({'height':39})
                                         $('figure').addClass('nervous');
                                     }
                         }        
@@ -76,7 +86,14 @@ $(document).ready(function(){
                 });
          });
     }
-    
+    function blink() {
+        $('.eye').animate({'height':0},100,function(){
+            $('.eye').animate({'height':15},100);            
+        });
+    }
+    setInterval(blink,5000);
+
+
 $(document).mousemove(function(h){
     $(".cursor").css('top',h.pageY);
     $(".cursor").css('left',h.pageX);

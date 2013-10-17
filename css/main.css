@@ -31,10 +31,10 @@ body {
     font-size: 1em;
     line-height: 1.4;
     background: url(../img/bg.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    -webkit-background-size: 100%100%;
+    -moz-background-size: 100%100%;
+    -o-background-size: 100%100%;
+    background-size: 100%100%;
 }
 
 canvas {
@@ -94,6 +94,7 @@ body {
 }
 
 .wrapper {
+
     width: 90%;
     margin: 0 5%;
 }
@@ -436,7 +437,7 @@ line-height: 1;
     }
 
         /* Creature container ========================================== */    
-        .creatures { list-style:none;margin:20 0; transition:opacity .3s; text-align:center;position: absolute;top: 40px; display: block;}
+        .creatures { list-style:none;margin:20 0; transition:opacity .3s; text-align:center;position: absolute;bottom: 340px; display: block;}
         
         .creatures li {
             padding-top: 0px;
@@ -520,14 +521,16 @@ line-height: 1;
             border-radius:10px;
             border-radius:50%;
             animation:blink 4s ease-in-out infinite;
+            @-webkit- animation:blink 4s ease-in-out infinite;
+
         }
-        @keyframes blink { 90% { transform:none; } 95% { transform:rotateX(90deg); } }
+        @keyframes blink { 90% { transform:none } 95% { transform:rotateX(90deg); } }
         
-        
+        @-webkit-keyframes blink { 90% { transform:height:0px; } 95% { transform:rotateX(90deg); } }
         
     /* Moustache =================================================== */    
         .moustache { display:inline-block; width:100%; height:10px; }
-        .moustache:before, .moustache:after { display:inline-block;  color:rgba(0,0,0,.9); content:"~"; font-size:4em; line-height:0; font:5em/20px "Helvetica", Arial; margin:0 -4px; }
+        .moustache:before, .moustache:after { display:inline-block;  color:rgba(0,0,0,.9); content:"o"; font-size:4em; line-height:0; font:5em/20px "Helvetica", Arial; margin:0 -4px; }
         .moustache:before { transform:rotateY(180deg); }
         
         li:hover .moustache { animation:moustache-wiggle 2s infinite; }
