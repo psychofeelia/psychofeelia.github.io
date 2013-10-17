@@ -6,22 +6,18 @@ $(document).ready(function(){
         $(".main section:eq(" + $(this).index() + ")").fadeIn();
     });
     $("nav a:eq(0)").click();
-    $(window).resize(function(){
-        if($(window).width()>=480){
-            $("nav").hover(function(){
-                $(".arrow").fadeOut();
-            },
-            function(){
-                $(".arrow").delay(300).fadeIn();
-            }
-            );
+    if($(window).width()>=480){
+        $("nav").hover(function(){
+            $(".arrow").fadeOut();
+        },
+        function(){
+            $(".arrow").delay(300).fadeIn();
         }
-        else{
-            $('nav').hover(function(){});
-        }
-    
-    })
-        
+        );
+    }
+    else{
+        $('nav').hover(function(){});
+    }
 
     var bouncetime = 1000;
     var ballheight = 20;
@@ -70,16 +66,15 @@ $(document).ready(function(){
                                     }
                                     
                                 }
-                                
-                                    if(x2/a1+y2/(Math.pow(1,2)*b2)-1 <0)
-                                    {   $('figure').removeClass('nervous'); 
-                                        balltop=480;
-                                    }
-                                    if(x2/a2+y2/(Math.pow(n,2)*b2)-1 >0)
-                                    {   p=n;
-                                        balltop= 30;
-                                         // $('.mouth').animate({'height':39})
-                                        $('figure').addClass('nervous');
+                                if(x2/a1+y2/(Math.pow(1,2)*b2)-1 <0)
+                                {   $('figure').removeClass('nervous'); 
+                                    balltop=480;
+                                }
+                                if(x2/a2+y2/(Math.pow(n,2)*b2)-1 >0)
+                                {   p=n;
+                                    balltop= 30;
+                                     // $('.mouth').animate({'height':39})
+                                    $('figure').addClass('nervous');
                                     }
                         }        
                 ballbounce();
